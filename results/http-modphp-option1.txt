@@ -1,0 +1,7 @@
+[OK] http: All five installer URLs are blocked (403/404)
+      - /core/install.php -> 403 (blocked)
+      - /install.php -> 403 (blocked), ended at /core/install.php
+      - /core/install.php/foo -> 403 (blocked)
+      - /core//install.php -> 403 (blocked)
+      - /core/./install.php -> 403 (blocked)
+Summary: 1 ok

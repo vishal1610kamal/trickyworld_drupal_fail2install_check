@@ -1,0 +1,16 @@
+[HIGH] state: The SA-CORE-2026-019 update hook has not run yet
+    `drush updatedb:status` lists system_post_update_mark_installation_finished.
+    -> Record install_task and install_time, back up the database, then run `drush updatedb`.
+[HIGH] state: User 1 was created after the flaw went public
+    A reinstall creates a new user 1 with the attacker's name, email and password.
+      - name: labadmin
+      - mail: <lab address>
+      - created: 2026-11-25 19:13 UTC
+      - last login: never
+      - roles: authenticated, administrator
+    -> Unless you installed this site then, treat it as compromised.
+[MEDIUM] state: install_time is 2026-11-25 19:13 UTC
+    Drupal records it when an installation finishes. A date after the flaw went public means the site was installed or reinstalled then, or that the SA-CORE-2026-019 update filled in a missing value when you ran it.
+    -> If neither explains it, treat the site as possibly reinstalled by someone else.
+[OK] state: install_task is 'done'
+Summary: 2 high, 1 medium, 1 ok

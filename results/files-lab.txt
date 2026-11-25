@@ -1,0 +1,13 @@
+[HIGH] files: PHP can make sites/default/settings.php writable or rewrite it
+    sites/default/settings.php: -r--r--r-- labuser:labuser. PHP runs as labuser (it owns the Twig templates Drupal compiled): it can change the permissions of the file.
+      - sites/default/settings.php: -r--r--r-- labuser:labuser
+    -> SA-CORE-2026-017: some exploit paths are blocked only when the web server can't write to settings.php or change its permissions. A read-only mode doesn't stop the file's owner: make another user own it (for example your deploy user), mode 444 or 440, with PHP able only to read it.
+[MEDIUM] files: .htaccess blocks install.php
+    But .htaccess is a scaffold file: `composer install` rewrites it and the block disappears.
+    -> Works only where Apache reads .htaccess for PHP requests: not on Nginx, and not when Apache passes PHP to PHP-FPM with ProxyPassMatch (it answered 200 in our tests). Keep the lines in a file appended by the drupal-scaffold file-mapping in composer.json.
+[INFO] files: sites/default/settings.php changed on 2026-11-25 18:35 UTC
+    That is after 2026-11-18.
+    -> If nobody on your team changed it then, compare it with your backup or your repository.
+[OK] files: Scanned 21284 files in the web root
+    29 compiled Twig templates (expected).
+Summary: 1 high, 1 medium, 1 info, 1 ok

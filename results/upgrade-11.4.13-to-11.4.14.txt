@@ -1,0 +1,27 @@
+Updating a Drupal 11.4.13 site to 11.4.14 (lab, 25 November 2026; PHP 8.3.36, MySQL 8.0.46, Drush 13.8.1)
+
+$ composer update "drupal/core-*" --with-all-dependencies
+  - Upgrading drupal/core (11.4.13 => 11.4.14)
+  - Upgrading drupal/core-composer-scaffold (11.4.13 => 11.4.14)
+  - Upgrading drupal/core-project-message (11.4.13 => 11.4.14)
+  - Upgrading drupal/core-recipe-unpack (11.4.13 => 11.4.14)
+  - Upgrading drupal/core-recommended (11.4.13 => 11.4.14)
+  - Upgrading symfony/http-kernel (v7.4.23 => v7.4.24)
+  - Upgrading twig/twig (v3.30.0 => v3.31.1)
+
+$ drush updatedb:status
+ -------- --------------- ------------- --------------------------------------
+  Module   Update ID       Type          Description
+ -------- --------------- ------------- --------------------------------------
+  system   mark_installa   post-update   Mark the installation as finished on
+           tion_finished                 sites with incomplete install state.
+ -------- --------------- ------------- --------------------------------------
+
+$ drush updatedb -y
+>  [notice] Update started: system_post_update_mark_installation_finished
+>  [notice] Update completed: system_post_update_mark_installation_finished
+ [success] Finished performing updates.
+
+Before the update, the lab site's install_time state value had been deleted on purpose (install_task was
+"done"). After `drush updatedb`, install_time held the time of the update itself (1795633271), not the
+original install time: record both values before you update if you need them as evidence.

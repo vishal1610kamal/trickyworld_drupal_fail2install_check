@@ -1,0 +1,14 @@
+composer audit on a drupal/recommended-project 11.4.13 install, run 25 November 2026 (Composer 2.6.5).
+On 11.4.14 the same command printed: No security vulnerability advisories found.
+
+drupal/core            SA-CORE-2026-019     CVE-2026-136716  affected <10.6.23 || >= 11.0.0 <11.3.23 || >=11.4.0 <11.4.14
+twig/html-extra        PKSA-b7yd-vc3m-dv17  CVE-2026-133769  affected >=3.12.0,<3.31.1
+twig/twig              PKSA-tfq6-ydd8-dhbf  CVE-2026-133764  affected >=1.0.0,<2.0.0|>=2.0.0,<3.0.0|>=3.0.0,<3.31.1
+twig/twig              PKSA-v6ry-d7gg-9dnc  CVE-2026-133770  affected >=1.0.0,<2.0.0|>=2.0.0,<3.0.0|>=3.0.0,<3.31.1
+twig/twig              PKSA-pkw5-3qxt-b654  CVE-2026-133766  affected >=3.28.0,<3.31.1
+twig/twig              PKSA-dq27-x2jc-ksbp  CVE-2026-133763  affected >=3.21.0,<3.31.1
+twig/twig              PKSA-szz8-81wy-3x8z  CVE-2026-133768  affected >=1.0.0,<2.0.0|>=2.0.0,<3.0.0|>=3.0.0,<3.31.1
+twig/twig              PKSA-2xyw-sdzb-ywxg  CVE-2026-133765  affected >=3.23.0,<3.31.1
+twig/twig              PKSA-hjpc-r7p2-zyfx  CVE-2026-133767  affected >=1.0.0,<2.0.0|>=2.0.0,<3.0.0|>=3.0.0,<3.31.1
+twig/twig              PKSA-hs2m-ms65-2zgg  CVE-2026-133771  affected >=1.0.0,<2.0.0|>=2.0.0,<3.0.0|>=3.0.0,<3.31.0
+twig/twig              PKSA-k9x8-rxqp-rkb4  CVE-2026-133772  affected >=3.15.0,<3.31.0

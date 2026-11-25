@@ -1,0 +1,26 @@
+[CRITICAL] logs: 2 requests ran PHP files that are not Drupal entry points
+    Drupal only needs index.php, update.php and a few files in /core. Others answering 200 are where a dropped file shows up, and some are in a files folder.
+      - 2026-11-26 00:34:15 127.0.0.1 GET /sites/default/files/f2i-probe.php -> 200 "curl/7.81.0"
+      - 2026-11-26 00:34:15 127.0.0.1 GET /modules/f2i-probe.php -> 200 "curl/7.81.0"
+    -> Look at each file on disk (as text) and at who requested it.
+[HIGH] logs: The installer answered 41 requests from 1 addresses
+    install.php was reachable: it answered with 2xx.
+      - 2026-11-26 00:07:05 127.0.0.1 GET /core/install.php -> 200 "curl/7.81.0"
+      - 2026-11-26 00:07:06 127.0.0.1 GET /core/install.php/foo -> 200 "curl/7.81.0"
+      - 2026-11-26 00:07:06 127.0.0.1 GET /core//install.php -> 200 "curl/7.81.0"
+      - 2026-11-26 00:07:07 127.0.0.1 GET /core/./install.php -> 200 "curl/7.81.0"
+      … 37 more (use --evidence 0 to list all)
+    -> Block it in the web server configuration, then look at what these addresses did next.
+[HIGH] logs: Failure bursts next to installer requests
+    The published attack makes the installer's database checks fail on purpose, then retries. Floods of 5xx answers or connection errors around installer requests fit that pattern.
+      - 2026-11-26 00:07: 60 5xx answers, 0 database/resource errors, 146 installer requests within 5 min
+    -> Compare with your monitoring for those minutes, and check the site for compromise.
+[INFO] logs: 114 installer requests were refused
+    From 1 addresses.
+      - 2026-11-26 00:07:06 127.0.0.1 GET /install.php -> 404 "curl/7.81.0"
+      - 2026-11-26 00:07:07 127.0.0.1 GET /core/install.php -> 403 "curl/7.81.0"
+      - 2026-11-26 00:07:07 127.0.0.1 GET /install.php -> 404 "curl/7.81.0"
+      - 2026-11-26 00:07:07 127.0.0.1 GET /core/install.php/foo -> 403 "curl/7.81.0"
+      … 110 more (use --evidence 0 to list all)
+[INFO] logs: Read 217 requests (2026-11-26 00:07 to 2026-11-26 00:44), 217 since 2026-11-25 00:00 UTC
+Summary: 1 critical, 2 high, 2 info

@@ -1,0 +1,9 @@
+[HIGH] http: The installer answers requests (it shows 'Drupal already installed')
+    A fixed Drupal refuses to reinstall, but the advisories recommend that nobody can reach install.php at all: SA-CORE-2026-019 says sites that secured the installer are not vulnerable.
+      - /core/install.php -> 200 (already-installed)
+      - /install.php -> 200 (already-installed), ended at /core/install.php
+      - /core/install.php/foo -> 200 (already-installed)
+      - /core//install.php -> 200 (already-installed)
+      - /core/./install.php -> 200 (already-installed)
+    -> Block it in the web server configuration (https://www.drupal.org/docs/administering-a-drupal-site/security-in-drupal/securing-the-installer-installphp).
+Summary: 1 high
